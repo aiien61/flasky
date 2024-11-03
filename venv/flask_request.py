@@ -1,4 +1,4 @@
-from hello import app
+from my_app import app
 from flask import current_app
 from termcolor import colored
 
