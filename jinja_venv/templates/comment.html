@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment</title>
+</head>
+<body>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+
+    {% macro render_comment(comment) %}
+        <li>{{ comment }}</li>
+    {% endmacro %}
+    <ul>
+        {% for comment in comments %}
+            {{ render_comment(comment) }}
+        {% endfor %}
+    </ul>
+
+    {% import 'macros.html' as macros %}
+    <ul>
+        {% for comment in comments %}
+            {{ macros.render_comment(comment) }}
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>
