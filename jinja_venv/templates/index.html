@@ -1,16 +1,13 @@
-{% extends 'base.html' %}
-{% block title %}Index{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}
+    {{ super() }}
+{% endblock %}
+
 {% block head %}
     {{ super() }}
-    <style>
-        body {
-            background-color: black;
-        }
-        h1 {
-            color: yellow;
-        }
-    </style>
 {% endblock %}
-{% block body %}
+
+{% block content %}
     <h1>Hello, World!</h1>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import 'macros.html' as ui %}
+
+{% block title %}Home | Store{% endblock %}
+
+{% block content %}
+<h2>Product List</h2>
+{% for product in products %}
+    {% include "product_card.html" %}
+{% endfor %}
+
+<h2>Special Offer</h2>
+{{ ui.badge("Limited Time!", "red") }}
+{% endblock %}

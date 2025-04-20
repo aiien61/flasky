@@ -1,0 +1,151 @@
+<h1>{{ "Welcome to The Store"|center(20) }}</h1>
+<pre>{{ data_json|safe }}</pre>
+
+<h2>lower:</h2>
+<ul>
+    {% for product in product_data.products %}
+    <li>{{ product|lower }}</li>
+    {% endfor %}
+</ul>
+
+<h2>upper:</h2>
+{{ product_data.brands[0]|upper }}
+
+<h2>attr:</h2>
+{{ product_data|attr('brands') }}
+
+<h2>capitalize:</h2>
+{{ product_data.brands[0]|capitalize }}
+
+<h2>abs:</h2>
+{{ product_data.stocks[0] | abs }}
+
+<h2>trim:</h2>
+{{ product_data.desc[0] | trim }}
+
+<h2>batch:</h2>
+{% for row in product_data.products | batch(2) %}
+<div class="row">
+    {% for item in row %}
+    <div class="product">{{ item }}</div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+<h2>title:</h2>
+{{ product_data.desc[1]|title }}
+
+<h2>default:</h2>
+{{ product_data.slogans[2]|default("No description available.") }}
+
+<h2>dictsort:</h2>
+{% for key, value in data | dictsort %}
+{{ key }}: {{ value }}
+{% endfor %}
+
+<h2>Without escape:</h2>
+<p>{{ line }}</p>
+
+<h2>With escape:</h2>
+<p>{{ line | escape }}</p>
+
+<h2>filesizeformat:</h2>
+{{ 1027398472389 | filesizeformat }}
+
+<h2>first:</h2>
+{{ product_data.products|first }}
+
+<h2>last:</h2>
+{{ product_data.products|last }}
+
+<h2>float:</h2>
+${{ product_data.prices[0]|float }}
+
+<h2>format:</h2>
+{{ "Price: $%.2f"| format(data['prices'][0]) }}
+
+<h2>groupby:</h2>
+{% for group in products|groupby("brand") %}
+<ul>
+    {% for item in group.list %}
+    <li>{{ item.name }} - ${{ item.price }}</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+
+<h2>indent:</h2>
+{{ product_data.desc[0]|indent(2) }}
+
+<h2>int:</h2>
+{{ product_data.prices[0] | int }}
+
+<h2>join:</h2>
+{{ product_data.brands|join(', ') }}
+
+<h2>length:</h2>
+{{ product_data.products|length }}
+
+<h2>list:</h2>
+{{ product_data.products[0]|list }}
+
+<h2>pprint:</h2>
+{{ product_data|pprint }}
+
+<h2>random:</h2>
+{{ product_data.products|random }}
+
+<h2>replace:</h2>
+{{ product_data.desc[0]|replace('apple', 'Apple Inc.') }}
+
+<h2>reverse:</h2>
+<ul>
+    {% for product in product_data.products | reverse %}
+    <li>{{ product }}</li>
+    {% endfor %}
+</ul>
+
+<h2>round:</h2>
+{{ product_data.discounts[0]|round }}
+{{ product_data.discounts[1]|round }}
+
+<h2>Without safe:</h2>
+<p>{{ product_data.slogans[0] }}</p>
+<h2>With safe:</h2>
+<p>{{ product_data.slogans[0]|safe }}</p>
+
+<h2>Without striptags:</h2>
+<p>{{ product_data.slogans[0]|safe }}</p>
+<h2>With striptags:</h2>
+<p>{{ product_data.slogans[0]|striptags|safe }}</p>
+
+<h2>sum:</h2>
+Total: {{ products|sum(attribute='price')}}
+
+<h2>map:</h2>
+Names: {{ products | map(attribute='name') | list}}
+
+<h2>rejectattr:</h2>
+Out of stock: {{ products | rejectattr('stock') | list}}
+In stock: {{ products | rejectattr('stock', 'equalto', 0) | list }}
+
+<h2>selectattr:</h2>
+In stock (selectattr): {{ products | selectattr('stock', 'gt', 0) | list }}
+
+<h2>slice:</h2>
+Sliced (2 columns): {{ versions | slice(2) }}
+
+<h2>sort:</h2>
+Sorted product names: {{ products | sort(attribute='name') | map(attribute='name') | list }}
+
+<h2>truncate:</h2>
+{{ product_data.desc[1]|truncate(10, True, '...') }}
+
+<h2>wordcount:</h2>
+Words: {{ product_data.desc[0]|wordcount }}
+
+<h2>wordwrap:</h2>
+Wrapped: <pre>{{ product_data.desc[1]|wordwrap(10) }}</pre>
+
+<h2>xmlattr:</h2>
+<div>{{ product_attr|xmlattr }}</div>
+
