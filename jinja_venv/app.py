@@ -1,11 +1,14 @@
 from flask import Flask, render_template, abort
+from flask_moment import Moment
+from datetime import datetime
 
 app = Flask(__name__)
-
+moment = Moment(app)
+# Moment.js: https://momentjs.com/
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", current_time=datetime.now())
 
 @app.route("/user/<name>")
 def user(name):
